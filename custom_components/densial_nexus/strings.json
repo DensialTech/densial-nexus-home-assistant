@@ -1,0 +1,18 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Densial Nexus",
+        "description": "Connect Home Assistant to your Densial Nexus Device Hub.",
+        "data": {
+          "nexus_url": "Nexus URL",
+          "bridge_token": "Bridge token"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Could not connect to Densial Nexus.",
+      "invalid_token": "The bridge token is invalid or revoked."
+    }
+  }
+}
