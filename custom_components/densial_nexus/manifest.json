@@ -1,7 +1,7 @@
 {
   "domain": "densial_nexus",
   "name": "Densial Nexus",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "documentation": "https://github.com/DensialTech/densial-nexus-home-assistant",
   "issue_tracker": "https://github.com/DensialTech/densial-nexus-home-assistant/issues",
   "codeowners": ["@DensialTech"],
