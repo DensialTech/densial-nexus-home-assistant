@@ -1,0 +1,12 @@
+{
+  "domain": "densial_nexus",
+  "name": "Densial Nexus",
+  "version": "0.1.0",
+  "documentation": "https://github.com/DensialTech/densial-nexus-home-assistant",
+  "issue_tracker": "https://github.com/DensialTech/densial-nexus-home-assistant/issues",
+  "codeowners": ["@DensialTech"],
+  "config_flow": true,
+  "integration_type": "hub",
+  "iot_class": "cloud_polling",
+  "requirements": []
+}
