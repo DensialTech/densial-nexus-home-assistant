@@ -23,7 +23,7 @@ class DensialNexusConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 async with session.post(
                     f"{url.rstrip('/')}/api/device-bridge",
                     headers={"Authorization": f"Bearer {token}"},
-                    json={"op": "poll"},
+                    json={"op": "register", "devices": []},
                     timeout=aiohttp.ClientTimeout(total=15),
                 ) as response:
                     if response.status == 401:
