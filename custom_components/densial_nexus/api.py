@@ -38,10 +38,17 @@ class DensialNexusApi:
     async def report_state(self, entities: list[dict[str, Any]]) -> dict[str, Any]:
         return await self._post({"op": "state", "entities": entities})
 
-    async def ack(self, command_id: str, success: bool, error: str | None = None) -> dict[str, Any]:
+    async def ack(
+        self,
+        command_id: str,
+        claim_token: str,
+        success: bool,
+        error: str | None = None,
+    ) -> dict[str, Any]:
         return await self._post({
             "op": "ack",
             "command_id": command_id,
+            "claim_token": claim_token,
             "success": success,
             "error": error,
         })

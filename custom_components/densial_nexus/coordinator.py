@@ -80,17 +80,19 @@ class DensialNexusCoordinator(DataUpdateCoordinator[dict[str, Any]]):
         return entities
 
     async def _execute_command(self, command: dict[str, Any]) -> None:
-        command_id = command.get("id")
+        command_id = command.get("command_id") or command.get("id")
         device_id = command.get("device_id")
         action = command.get("action")
+        claim_token = command.get("claim_token")
         value = command.get("value")
 
-        if not command_id or not device_id or not action:
+        if not command_id or not device_id or not action or not claim_token:
+            _LOGGER.error("Ignoring malformed Nexus bridge command: required command/device/action/claim token missing")
             return
 
         external_id = self._device_map.get(device_id)
         if not external_id:
-            await self.api.ack(command_id, False, "Unknown device")
+            await self.api.ack(command_id, claim_token, False, "Unknown device")
             return
 
         try:
@@ -136,9 +138,9 @@ class DensialNexusCoordinator(DataUpdateCoordinator[dict[str, Any]]):
                     blocking=True,
                 )
             else:
-                await self.api.ack(command_id, False, f"Unsupported action: {action}")
+                await self.api.ack(command_id, claim_token, False, f"Unsupported action: {action}")
                 return
 
-            await self.api.ack(command_id, True)
+            await self.api.ack(command_id, claim_token, True)
         except Exception as err:
-            await self.api.ack(command_id, False, str(err))
+            await self.api.ack(command_id, claim_token, False, str(err))
